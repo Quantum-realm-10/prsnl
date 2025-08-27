@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For My Beloved Wife</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@700&family=Tangerine:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #8e0448;
+      --bg2: #ff94a6;
+      --gold1: #ffd166;
+      --gold2: #f6c343;
+      --gold3: #e6a800;
+      --paper: #fff0f6;
+      --ink: #2d0a16;
+      --rose: #d81b60;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: 'Poppins', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(70vmax 70vmax at 0% 0%, rgba(255,209,102,0.2), transparent 60%),
+        radial-gradient(70vmax 70vmax at 100% 0%, rgba(255,209,102,0.2), transparent 60%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(#fff 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.25;
+      animation: twinkle 8s infinite linear;
+    }
+
+    @keyframes twinkle {
+      from { background-position: 0 0; }
+      to { background-position: 50px 50px; }
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 20px;
+      color: var(--rose);
+      animation: floatUp 8s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
+    }
+
+    /* Hidden card until music starts */
+    .card {
+      width: min(920px, 92vw);
+      background: var(--paper);
+      border-radius: 30px;
+      padding: clamp(20px, 3vw, 40px);
+      box-shadow: 0 0 30px rgba(255, 209, 102, 0.4), 0 20px 60px rgba(0,0,0,0.25);
+      text-align: center;
+      border: 3px solid rgba(255, 209, 102, 0.3);
+      opacity: 0; 
+      transform: translateY(40px) scale(0.94);
+      filter: blur(12px);
+      transition: all 3.5s cubic-bezier(0.25, 1, 0.3, 1);
+      position: relative;
+      z-index: 5;
+    }
+    .card.show {
+      opacity: 1; 
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .logo {
+      font-family: 'Tangerine', cursive;
+      font-size: 90px;
+      font-weight: 700;
+      margin: 25px auto;
+      color: var(--rose);
+      text-shadow: 
+        0 0 15px rgba(216, 27, 96, 0.6),
+        0 0 30px rgba(216, 27, 96, 0.7),
+        0 0 45px rgba(216, 27, 96, 0.8);
+      animation: roseGlow 3s infinite alternate;
+    }
+
+    @keyframes roseGlow {
+      from { text-shadow: 0 0 15px rgba(216, 27, 96, 0.6), 0 0 30px rgba(216, 27, 96, 0.7); }
+      to   { text-shadow: 0 0 25px rgba(216, 27, 96, 0.8), 0 0 50px rgba(216, 27, 96, 1); }
+    }
+
+    .bismillah {
+      font-family: 'Amiri', serif;
+      font-size: clamp(20px, 4vw, 28px);
+      color: #8e0448;
+      letter-spacing: .5px;
+    }
+
+    h1 {
+      margin: 10px 0 0;
+      font-weight: 700; color: var(--rose);
+      font-size: clamp(28px, 5vw, 40px);
+      animation: fadeIn 2s ease-in;
+    }
+
+    .love-line {
+      display: grid; gap: 8px; place-items: center; margin: 20px 0 24px;
+    }
+    .love-line .ar {
+      direction: rtl; font-family: 'Scheherazade New', serif; 
+      font-size: clamp(36px, 6vw, 50px); color: var(--rose);
+      text-shadow: 0 0 8px rgba(216,27,96,0.4);
+    }
+    .love-line .en { font-weight: 600; color: var(--ink); animation: fadeIn 3s ease-in; }
+
+    .tagline { text-align: center; margin: 8px 0 18px; color: #4a0a25; font-style: italic; animation: fadeIn 4s ease-in; }
+
+    .dua, .note, .footer {
+      border: 1px dashed rgba(0,0,0,0.1);
+      border-radius: 16px;
+      background: #fffafc;
+      padding: clamp(14px, 2.2vw, 22px);
+      margin: 12px 0;
+    }
+
+    .section-title {
+      color: var(--rose); font-weight: 700;
+      border-bottom: 3px solid var(--gold1); padding-bottom: 4px; margin-bottom: 10px;
+    }
+
+    /* Elegant music button */
+    .music-btn {
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--rose), #a2043c);
+      color: white;
+      font-size: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(216,27,96,0.6), 0 0 50px rgba(216,27,96,0.8);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      z-index: 10;
+      animation: pulse 2.2s infinite;
+    }
+    .music-btn:hover {
+      transform: scale(1.12);
+      box-shadow: 0 0 50px rgba(255, 105, 180, 1), 0 0 90px rgba(255, 20, 147, 1);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Music Button -->
+  <div class="music-btn" id="musicBtn">🎵</div>
+
+  <div class="card" id="mainCard">
+    <div class="bismillah">السلام عليكم</div>
+    <h1>My Beloved Zawjaa <span class="names" id="wifeName">— My Love</span></h1>
+    <p class="tagline">You are my tranquility, my blessing, and my forever love.</p>
+    <div class="logo">NA</div>
+    <div class="love-line">
+      <div class="ar">أَنْتِ كُلُّ شَيْءٍ لِي - أَنْتِ رُوحِي</div>
+      <div class="en">You are my soul - You are everything to me.</div>
+    </div>
+
+    <section class="dua">
+      <div class="section-title">Duʿā’</div>
+      <p class="arabic">اللّهُمَّ ارزُقني حُبَّ من يُحبُّني فيك، واجعل بيننا مودَّةً ورحمةً، وبارك لي في زوجتي وبارك لها فيَّ، واجمعنا على طاعتك أبدًا.</p>
+      <p>“O Allah, grant me the love of the one who loves me for Your sake, place affection and mercy between us, bless me in my wife and bless her in me, and unite us always upon Your obedience.”</p>
+    </section>
+
+    <section class="note">
+      <div class="section-title">From <span class="names" id="fromName">your Zawjii</span></div>
+      <p id="customMessage">My dearest Chuttaa, every moment with you is paradise on earth. I pray Allah to always keeps our hearts united in love and mercy, and that we are companions in Jannah. You are my heart’s joy, answers to my duʿā, and I love you endlessly. Love You Zawjaa</p>
+    </section>
+
+    <div class="footer">
+      <p>“The best of you are the best to their wives or husband.” 
+        — Prophet Muḥammad ﷺ</p>
+    </div>
+  </div>
+
+  <!-- Background Audio -->
+  <audio id="bg-music" loop>
+    <source src="/WhatsApp Audio 2025-08-27 at 9.06.56 PM.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.textContent = '❤';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+      heart.style.opacity = 0.5 + Math.random() * 0.5;
+      heart.style.animationDuration = (6 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 1000);
+
+    const music = document.getElementById("bg-music");
+    const musicBtn = document.getElementById("musicBtn");
+    const card = document.getElementById("mainCard");
+
+    musicBtn.addEventListener("click", () => {
+      music.play();
+      card.classList.add("show");
+      musicBtn.style.display = "none";
+    });
+  </script>
+</body>
+</html>
